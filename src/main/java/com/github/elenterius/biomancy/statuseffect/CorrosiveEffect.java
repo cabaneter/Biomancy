@@ -1,6 +1,6 @@
 package com.github.elenterius.biomancy.statuseffect;
 
-import com.github.elenterius.biomancy.init.ModDamageSources;
+import com.github.elenterius.biomancy.util.AcidHelper;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -13,8 +13,7 @@ public class CorrosiveEffect extends StatusEffect {
 	@Override
 	public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
 		int damage = 2 * (amplifier + 1);
-		livingEntity.invulnerableTime = 0; //bypass invulnerable ticks
-		livingEntity.hurt(ModDamageSources.CORROSIVE_ACID, damage);
+		AcidHelper.doAcidDamage(livingEntity, damage);
 	}
 
 	@Override
