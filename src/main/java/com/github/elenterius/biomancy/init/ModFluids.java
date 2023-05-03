@@ -26,13 +26,7 @@ public final class ModFluids {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BiomancyMod.MOD_ID);
 
 	public static final RegistryObject<FluidType> ACID_TYPE = registerTintedType("acid", 0xFF_39FF14, properties -> properties.density(1024).viscosity(1024));
-
-	static void registerInteractions() {
-		FluidInteractionRegistry.addInteraction(ACID_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
-				ForgeMod.WATER_TYPE.get(),
-				fluidState -> fluidState.isSource() ? Blocks.CALCITE.defaultBlockState() : Blocks.DIORITE.defaultBlockState()
-		));
-	}	public static final Supplier<ForgeFlowingFluid.Properties> ACID_FLUID_PROPERTIES = () -> new ForgeFlowingFluid.Properties(ACID_TYPE, ModFluids.ACID, ModFluids.FLOWING_ACID)
+	public static final Supplier<ForgeFlowingFluid.Properties> ACID_FLUID_PROPERTIES = () -> new ForgeFlowingFluid.Properties(ACID_TYPE, ModFluids.ACID, ModFluids.FLOWING_ACID)
 			.slopeFindDistance(2).levelDecreasePerBlock(2)
 			.block(ModBlocks.ACID_FLUID_BLOCK)
 			.bucket(ModItems.ACID_BUCKET);
@@ -42,6 +36,14 @@ public final class ModFluids {
 	private ModFluids() {}
 
 	static void registerInteractions() {
+		FluidInteractionRegistry.addInteraction(ACID_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+				ForgeMod.WATER_TYPE.get(),
+				fluidState -> fluidState.isSource() ? Blocks.CALCITE.defaultBlockState() : Blocks.DIORITE.defaultBlockState()
+		));
+		FluidInteractionRegistry.addInteraction(ACID_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+				ForgeMod.LAVA_TYPE.get(),
+				fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.DIORITE.defaultBlockState()
+		));
 	}
 
 	private static <T extends Fluid> RegistryObject<T> register(String name, Supplier<T> factory) {
