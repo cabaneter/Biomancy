@@ -19,10 +19,7 @@ import com.github.elenterius.biomancy.client.render.entity.AcidProjectileRendere
 import com.github.elenterius.biomancy.client.render.entity.WitherProjectileRenderer;
 import com.github.elenterius.biomancy.client.render.entity.fleshblob.FleshBlobRenderer;
 import com.github.elenterius.biomancy.client.render.entity.fleshblob.MalignantFleshBlobRenderer;
-import com.github.elenterius.biomancy.init.ModBlockEntities;
-import com.github.elenterius.biomancy.init.ModBlocks;
-import com.github.elenterius.biomancy.init.ModEntityTypes;
-import com.github.elenterius.biomancy.init.ModItems;
+import com.github.elenterius.biomancy.init.*;
 import com.github.elenterius.biomancy.integration.ModsCompatHandler;
 import com.github.elenterius.biomancy.item.SerumItem;
 import com.github.elenterius.biomancy.tooltip.EmptyLineTooltipComponent;
@@ -34,8 +31,10 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.WitherSkullRenderer;
+import net.minecraft.world.item.BucketItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -114,6 +113,9 @@ public final class ClientSetupHandler {
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.BIO_LANTERN.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ModBlocks.TENDON_CHAIN.get(), RenderType.cutout());
 
+		ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_ACID.get(), RenderType.translucent());
+
 		//block with "glowing" overlay texture, also needs a overlay model see onModelBakeEvent() in ClientSetupHandler
 		//ItemBlockRenderTypes.setRenderLayer(ModBlocks.FOOBAR.get(), renderType -> renderType == RenderType.getCutout() || renderType == RenderType.getTranslucent());
 	}
@@ -141,6 +143,7 @@ public final class ClientSetupHandler {
 	public static void onItemColorRegistry(final RegisterColorHandlersEvent.Item event) {
 		event.register((stack, index) -> ModItems.ESSENCE.get().getColor(stack, index), ModItems.ESSENCE.get());
 		event.register((stack, index) -> index == 0 ? ((SerumItem) stack.getItem()).getSerum().getColor() : 0xFF_FFFFFF, ModItems.ENLARGEMENT_SERUM.get(), ModItems.SHRINKING_SERUM.get());
+		event.register((stack, index) -> index == 1 ? IClientFluidTypeExtensions.of(((BucketItem) stack.getItem()).getFluid()).getTintColor() : 0xFF_FFFFFF, ModItems.ACID_BUCKET.get());
 	}
 
 	@SubscribeEvent

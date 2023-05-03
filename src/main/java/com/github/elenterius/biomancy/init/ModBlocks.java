@@ -98,6 +98,9 @@ public final class ModBlocks {
 	public static final RegistryObject<DirectionalSlabBlock> MALIGNANT_FLESH_SLAB = registerSlab(MALIGNANT_FLESH, DirectionalSlabBlock::new);
 	public static final RegistryObject<FleshVeinsBlock> MALIGNANT_FLESH_VEINS = register("malignant_flesh_veins", properties -> new FleshVeinsBlock(properties.noCollission().noOcclusion()));
 
+	//## Fluids
+	public static final RegistryObject<LiquidBlock> ACID_FLUID_BLOCK = register("acid_fluid_block", () -> new LiquidBlock(ModFluids.ACID, copyProperties(Blocks.WATER)));
+
 	//## Misc
 	public static final RegistryObject<VoiceBoxBlock> VOICE_BOX = register("voice_box", VoiceBoxBlock::new);
 	public static final RegistryObject<LadderBlock> FLESH_LADDER = register("flesh_ladder", () -> new LadderBlock(createFleshyBoneProperties().noOcclusion()));

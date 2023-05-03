@@ -96,6 +96,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		wallBlockItem(ModItems.FLESH_WALL.get());
 		wallBlockItem(ModItems.PACKED_FLESH_WALL.get());
+
+		dynamicBucket(ModItems.ACID_BUCKET.get());
 	}
 
 	private ItemModelBuilder spawnEggItem(ResourceLocation item) {

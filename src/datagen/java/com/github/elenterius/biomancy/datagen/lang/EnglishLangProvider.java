@@ -160,6 +160,7 @@ public class EnglishLangProvider extends AbstractLangProvider {
 
 		addItemTranslations();
 		addBlockTranslations();
+		addFluidTranslations();
 		addEntityTranslations();
 		addEnchantmentTranslations();
 		addStatusEffectTranslations();
@@ -355,6 +356,7 @@ public class EnglishLangProvider extends AbstractLangProvider {
 		addItem(ModItems.CREATOR_MIX, "Exotic Flesh Mix", "A meal made for the cradle... just not for you.");
 		addItem(ModItems.INJECTOR, "Bio-Injector", "A simple device which utilizes a razor sharp needle to quickly and forcefully inject Serums into Mobs and Players.");
 		addItem(ModItems.FERTILIZER, "Bio-Alchemical Fertilizer", "Fertilizer that induces hyper-growth in plants, even for reeds, cactus, nether wart and chorus plant.");
+		addItem(ModItems.ACID_BUCKET, "Acid Bucket");
 
 		addItem(ModItems.LONG_CLAWS, "Living Long Claws", "Claws made of living flesh\n\nFeed it with nutrients via right click in the inventory.");
 		addItem(ModItems.DEV_ARM_CANNON, "[Dev Tool] Arm Cannon", "Creative/Developer Tool for testing projectiles.");
@@ -441,6 +443,8 @@ public class EnglishLangProvider extends AbstractLangProvider {
 		addBlock(ModBlocks.MALIGNANT_FLESH_SLAB, "Malignant Flesh Slab", "Looks dangerous, you better not touch this slab!");
 		addBlock(ModBlocks.MALIGNANT_FLESH_STAIRS, "Malignant Flesh Stairs", "Stairs made of malignant flesh. Looks diseased...");
 		addBlock(ModBlocks.MALIGNANT_FLESH_VEINS, "Malignant Flesh Veins", "Looks dangerous, you better not touch these veins!");
+
+		addBlock(ModBlocks.ACID_FLUID_BLOCK, "Acid");
 	}
 
 	private void addEntityTranslations() {
@@ -449,4 +453,7 @@ public class EnglishLangProvider extends AbstractLangProvider {
 		addEntityType(ModEntityTypes.MALIGNANT_FLESH_BLOB, "Malignant Flesh Blob");
 	}
 
+	private void addFluidTranslations() {
+		addFluidType(ModFluids.ACID_TYPE, "Acid");
+	}
 }
